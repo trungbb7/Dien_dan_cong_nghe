@@ -2,32 +2,14 @@
 {% load static %}
 {% block title %}Ask a question{% endblock %} 
 {%block css %} <link rel="stylesheet" href="{% static 'comment/askquestion.css' %}"/> {% endblock %}
+
 {% block content %}
 <div class="form__content">
-<h1>Ask a question</h1>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <div class="question_title__gray">
-    <label for="question_title">Question Title</label>
-    <input type="text" name="question_title" value="{{ question_title }}" />
-  </div>
-  <div class="question_description__gray">
-    <label for="question_description">Question Description</label>
-    <textarea
-      name="question_description"
-      value="{{ question_description }}"
-    ></textarea>
-  </div>
-    <div class="realatedTags__gray">
-    <label for="realated Tags">Related Tags</label>
-    <input
-      name="related_tags"
-      value="{{ related_tags }}"
-    ></input>
-  </div>
-
-  <button type="submit">Ask on Community</button>
-</form>
+  <h1>Ask a question</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Ask on Community</button>
+  </form>
 </div>
-
 {% endblock %}

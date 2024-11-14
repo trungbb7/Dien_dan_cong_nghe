@@ -2,7 +2,7 @@
   height: 100%;
   background-color: blueviolet;
   margin-top: 20px;
-  padding: 10px;
+  padding: 30px;
 }
 form {
   margin-left: 50px;
@@ -14,14 +14,7 @@ h1 {
   margin-left: 50px;
   margin-bottom: 0px;
 }
-.question_title__gray {
-  display: flex;
-  flex-direction: column;
-}
-.question_title__gray label {
-  color: black;
-}
-.question_title__gray input {
+input {
   height: 40px;
   width: 500px;
   border: 1px solid #ccc;
@@ -30,17 +23,9 @@ h1 {
   margin-top: 10px;
   border-radius: 5px;
 }
-.question_description__gray {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-}
-.question_description__gray label {
-  color: black;
-}
-.question_description__gray textarea {
+.form-control_question_description {
   margin-top: 10px;
-  width: 518px;
+  width: 510px;
   height: 100px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -48,23 +33,7 @@ h1 {
   outline: none;
   border: none;
   resize: none;
-}
-.realatedTags__gray {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-}
-.realatedTags__gray label {
-  color: black;
-}
-.realatedTags__gray input {
-  height: 40px;
-  width: 500px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0 10px;
-  margin-top: 10px;
-  border-radius: 5px;
+  padding-left: 10px;
 }
 button {
   color: white;
@@ -74,4 +43,7 @@ button {
   background-color: #6b05b3;
   border: none;
   outline: none;
+}
+label {
+  display: block;
 }
