@@ -1,0 +1,15 @@
+.navigation_bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  overflow: hidden;
+}
+.left_section_nav {
+    margin-left: 100px;
+}
+.center_section_nav {
+
+}
+.right_section_nav {
+  margin-right: 100px;
+}

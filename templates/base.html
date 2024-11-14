@@ -1,0 +1,32 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} H-Forum {% endblock %}</title>
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'app.css' %}" />
+  </head>
+  <body>
+    <header>
+      <div class="navigation_bar">
+        <div class="left_section_nav">
+          <a href="">H-Forum</a>
+        </div>
+        <div class="center_section_nav">
+          <img src="..." />
+          <input placeholder="Search for Topics" type="text" /> 
+        </div>
+        <div class="right_section_nav">
+          <a href="">Login</a>
+          <a href="">Sign Up</a>
+        </div>
+      </div>
+    </header>
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+  </body>
+</html>
