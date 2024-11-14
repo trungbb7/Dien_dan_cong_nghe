@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ask a question{% endblock %} 
+{%block css %} <link rel="stylesheet" href="{% static 'comment/askquestion.css' %}"/> {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
-</head>
+{% block content %}
 
-<body>
-    <h1>Demo</h1>
-</body>
+<section id="all-posts">
+    <h2> All Posts </h2>
 
-</html>
+    <ul>
+    {% for post in posts %}
+        <li>
+            <h3> {{ post.title }} </h3>
+            <p> {{ post.content }} </p>
+            <p> {{ post.date_posted }} </p>
+            <p> {{ post.author }} </p>
+            <a href="{% url 'comment:post-detail' posts.id %}"> View </a>
+        </li>
+    {% endfor %}
+
+
+
+    </ul>
+</section>
+
+{% endblock %}

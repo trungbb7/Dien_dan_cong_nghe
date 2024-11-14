@@ -23,7 +23,7 @@ input {
   margin-top: 10px;
   border-radius: 5px;
 }
-.form-control_question_description {
+textarea {
   margin-top: 10px;
   width: 510px;
   height: 100px;
