@@ -5,7 +5,7 @@
 }
 
 .btn-nostyle.active svg {
-    fill: rgb(0, 252, 0);
+  fill: rgb(0, 252, 0);
 }
 
 #all-posts {
@@ -57,26 +57,100 @@
   align-items: center;
 }
 .tag {
-    padding: 10px;
+  padding: 10px;
 }
 .message_count {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.topic_content--white{
-    background-color: white;
-    margin: 20px;
-    border-radius: 5px;
+.topic_content--white {
+  background-color: white;
+  margin: 20px;
+  border-radius: 5px;
 }
-hr{
-    width: 90%;
-    border:  1px solid rgb(222, 220, 220);
+hr {
+  width: 90%;
+  border: 1px solid rgb(222, 220, 220);
 }
-.title__content--columns{
-    display: flex;
-    flex-direction: column;
+.title__content--columns {
+  display: flex;
+  flex-direction: column;
 }
-.title__content--columns p{
-    margin-top: 0px
+.title__content--columns p {
+  margin-top: 0px;
+}
+.comment_section {
+  display: none;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  justify-content: flex-end;
+}
+.comment_section.active {
+  display: flex;
+}
+.form-control__comment--input {
+  flex: 1.5;
+  resize: none;
+  border-radius: 3px;
+  border: 1px solid rgb(190, 190, 190);
+  margin-left: 42px;
+}
+.submit_comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.submit_button {
+  background-color: white;
+  border: none;
+  outline: none;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.submit_button svg {
+  padding: 5px;
+  border-radius: 50%;
+}
+.submit_button svg:hover {
+  background-color: rgb(205, 205, 205);
+}
+.message_count {
+  cursor: pointer;
+}
+.message_count img {
+  padding: 5px;
+  border-radius: 50%;
+}
+.message_count img:hover {
+  background-color: rgb(205, 205, 205);
+}
+.comment-form {
+  display:none;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.comment-form.active{
+  display: flex;
+}
+.comments--center{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-left: auto;
+  background-color: white;
+  padding-left: 10px;
+  width: 86%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgb(0, 0, 0);
+}
+.comment_content{
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.comment_author{
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }

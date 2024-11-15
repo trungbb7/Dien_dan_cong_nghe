@@ -23,6 +23,18 @@ class Author(models.Model):
         return self.first_name
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(
+        "Post", on_delete=models.CASCADE, related_name="comments_related"
+    )
+    content = models.TextField(default=" ")
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.content}"
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -30,7 +42,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
     slug = models.SlugField(unique=True, db_index=True)
     votes = models.IntegerField(default=0)
-    comments = models.TextField(default="", blank=True)
+    comments = models.ManyToManyField(Comment, related_name="posts_related")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -1,25 +1,41 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from comment.forms import PostForm
-from comment.models import Author, Post, Tag
+from comment.forms import PostForm, commentsForm
+from comment.models import Author, Comment, Post, Tag
 
 # Create your views here.
 
 
 def index(request):
     posts = Post.objects.all()
-    for post in posts:
-        print(post)
-    return render(request, "comment/index.html", {"posts": posts})
+    if request.method == "POST":
+        print(request.POST)
+        form = commentsForm(request.POST)
+        post_id = request.POST.get("post_id")
+        post = get_object_or_404(Post, id=post_id)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.author = Author.objects.create(
+                first_name="John", last_name="Doe", email_address="test@example.com"
+            )
+            comment.save()
+            post.comments.add(comment)
+            return redirect("home")
+        else:
+            return JsonResponse({"error": form.errors})
+    else:
+        form = commentsForm()
+    return render(
+        request,
+        "comment/index.html",
+        {"posts": posts, "form": form},
+    )
 
 
 def askquestion(request):
     return render(request, "comment/askquestion.html")
-
-
-def posts(request):
-    posts = Post.objects.all()
-    return render(request, "comment/index.html", {"posts": posts})
 
 
 def ask_question(request):
@@ -40,12 +56,3 @@ def ask_question(request):
         form = PostForm()
 
     return render(request, "comment/askquestion.html", {"form": form})
-
-
-def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug)
-    return render(
-        request,
-        "comment/post_detail.html",
-        {"post": post, "post_tags": post.tags.all()},
-    )
