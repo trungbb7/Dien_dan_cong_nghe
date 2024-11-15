@@ -17,7 +17,7 @@
         </div>
         <div class="center_section_nav">
           <img src="..." />
-          <input placeholder="Search for Topics" type="text" /> 
+          <input placeholder="Search for Topics" type="text" />
         </div>
         <div class="right_section_nav">
           <a href="">Login</a>
@@ -25,8 +25,26 @@
         </div>
       </div>
     </header>
-    <main>
-        {% block content %} {% endblock %}
+    <main class="main-section">
+      <div class="left_section">
+        <a href="">HOME</a>
+        <a href="">EXPLORE TOPICS</a>
+        <a href="">MY QNA</a>
+      </div>
+      {% block content %} {% endblock %}
+      <div class="right_section">
+        <a class="start_topic--purple" href="{% url 'ask_question' %}" class="start_topic--purple">Start a new topic</a>
+        <div class="top_users">
+          <h3>Top Users</h3>
+          <ul>
+            <li>user 1</li>
+            <li>user 2</li>
+            <li>user 3</li>
+            <li>user 4</li>
+            <li>user 5</li>
+          </ul>
+        </div>
+      </div>
     </main>
   </body>
 </html>

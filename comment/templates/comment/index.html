@@ -1,27 +1,56 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Ask a question{% endblock %} 
-{%block css %} <link rel="stylesheet" href="{% static 'comment/askquestion.css' %}"/> {% endblock %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Ask a question {%endblock %} 
+{%block css %}
+<link rel="stylesheet" href="{% static 'comment/index.css' %}" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'comment/index.js' %}"></script>
+ {% endblock %}
 
 {% block content %}
 
 <section id="all-posts">
-    <h2> All Posts </h2>
-
-    <ul>
+  <ul class="list_all_post--center">
     {% for post in posts %}
-        <li>
-            <h3> {{ post.title }} </h3>
-            <p> {{ post.content }} </p>
-            <p> {{ post.date_posted }} </p>
-            <p> {{ post.author }} </p>
-            <a href="{% url 'comment:post-detail' posts.id %}"> View </a>
-        </li>
+    <li class="comment">
+    <div class="topic_content--white">
+      <div class="upper_section">
+        <div class="votes--inline-block">
+          <button class="btn-nostyle">
+           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
+          </button>
+          <p>{{ post.votes }}</p>
+          <button class="btn-nostyle">
+           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/></svg>
+          </button>
+        </div>
+        <div class="title__content--columns">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+        </div>
+      
+      </div>
+      <hr />
+      <div class="lower_section">
+        <p>Posted by {{ post.author }}</p>
+        <p>{{ post.created_at }}</p>
+        <div class="tags--center">
+          {% for tag in post.tags.all %}
+          <span class="tag">{{tag.caption}}</span>
+          {% endfor %}
+        </div>
+        <div class="message_count">
+          <img
+            src="{% static 'comment/comment.svg' %}"
+            alt="message count"
+          />{{post.comments.count}}
+        </div>
+        <p class="hidden_comment">{{ post.comments }}</p>
+      </div>
+    </div>
+    </li>
     {% endfor %}
-
-
-
-    </ul>
+  </ul>
 </section>
 
 {% endblock %}

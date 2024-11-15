@@ -1,13 +1,14 @@
 from django.db import models
 from django.utils.text import slugify
+
 # Create your models here.
 
 
-class Tags(models.Model):
-    tag = models.CharField(max_length=20)
+class Tag(models.Model):
+    caption = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.tag
+        return self.caption
 
 
 class Author(models.Model):
@@ -19,20 +20,24 @@ class Author(models.Model):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
-        return self.name
+        return self.first_name
 
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tags)
+    tags = models.ManyToManyField(Tag)
     slug = models.SlugField(unique=True, db_index=True)
+    votes = models.IntegerField(default=0)
+    comments = models.TextField(default="", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
-    
+        return f"title: {self.title} - author:{self.author} - tags {self.tags.all()}"
+
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(f"{self.title+str(self.id)}")
         super().save(*args, **kwargs)

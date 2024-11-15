@@ -3,6 +3,7 @@
   justify-content: space-between;
   background-color: white;
   overflow: hidden;
+  position: sticky;
 }
 .left_section_nav {
     margin-left: 100px;
@@ -12,4 +13,32 @@
 }
 .right_section_nav {
   margin-right: 100px;
+}
+.left_section{
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  left: 0px;
+}
+.main-section{
+  display: flex;
+  justify-content: space-evenly;
+}
+.right_section{
+  display: flex;
+  flex-direction: column;
+  margin-right: 100px;
+  right: 0px;
+}
+.start_topic--purple{
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  background-color: #6b05b3;
+  text-decoration: none;
+  padding-left: 15px;
+  padding-right: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
 }

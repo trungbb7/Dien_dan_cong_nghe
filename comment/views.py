@@ -1,13 +1,16 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from comment.forms import QuestionForm
-from comment.models import Author, Post, Tags
+from comment.forms import PostForm
+from comment.models import Author, Post, Tag
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, "comment/index.html")
+    posts = Post.objects.all()
+    for post in posts:
+        print(post)
+    return render(request, "comment/index.html", {"posts": posts})
 
 
 def askquestion(request):
@@ -21,24 +24,20 @@ def posts(request):
 
 def ask_question(request):
     if request.method == "POST":
-        form = QuestionForm(request.POST)
+        form = PostForm(request.POST)
         if form.is_valid():
-            # Xử lý dữ liệu hợp lệ
-            question_title = form.cleaned_data["question_title"]
-            question_description = form.cleaned_data["question_description"]
-            related_tags = form.cleaned_data["related_tags"]
-
-            # Lưu dữ liệu vào database
-            tags = Tags.objects.create(tag=related_tags)
-            author = Author.objects.get(user=request.user)
-            post = Post.objects.create(
-                title=question_title, content=question_description, author=author
+            post = form.save(commit=False)
+            post.author = Author.objects.create(
+                first_name="John", last_name="Doe", email_address="Diango@gasd.com "
             )
-            post.tags.add(tags)
             post.save()
+            tags_list = form.cleaned_data["tags"].split(",")
+            for tag in tags_list:
+                tag = Tag.objects.get_or_create(caption=tag.strip())
+                post.tags.add(tag[0])
             return redirect("home")
     else:
-        form = QuestionForm()
+        form = PostForm()
 
     return render(request, "comment/askquestion.html", {"form": form})
 

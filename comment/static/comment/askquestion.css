@@ -1,31 +1,33 @@
 .form__content {
-  height: 100%;
-  background-color: blueviolet;
+  width: 40%;
+  background-color: rgb(173, 116, 227);
   margin-top: 20px;
   padding: 30px;
+  border-radius: 10px;
 }
 form {
-  margin-left: 50px;
+  margin-left: 5px;
+  width: 100%;
 }
 h1 {
-  color: white;
   margin-top: 20px;
   font-weight: bold;
   margin-left: 50px;
   margin-bottom: 0px;
+  text-align: center;
 }
 input {
   height: 40px;
-  width: 500px;
+  width: 99%;
   border: 1px solid #ccc;
-  border-radius: 5px;
   padding: 0 10px;
   margin-top: 10px;
   border-radius: 5px;
+  padding-right: 0px;
 }
 textarea {
   margin-top: 10px;
-  width: 510px;
+  width: 99%;
   height: 100px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -34,15 +36,11 @@ textarea {
   border: none;
   resize: none;
   padding-left: 10px;
+  padding-right: 0px;
 }
-button {
-  color: white;
-  font-size: 20px;
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #6b05b3;
+button{
+  background-color: white;
   border: none;
-  outline: none;
 }
 label {
   display: block;
