@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-sm-2">
+        <center><img src="{% static 'images/L.jpg' %}" class="responsive-img" style="max-height:150px"/></center>
+    </div>
+    <div class="col-sm-9">
+        <center><h1>Diễn Đàn Công Nghệ</h1></center>
+    </div>
+    <div class="col-sm-1">
+        {% if user.username %}
+            <p>Xin chào {{user.username}}</p>
+            <p><a href="{% url 'logout' %}">Đăng xuất</a></p>
+        {% else %}
+            <p><a href="{% url 'register' %}">Đăng ký</a>|<a href="{% url 'login' %}">Đăng nhập</a></p>
+        {% endif %}
+    </div>
+    </div>
