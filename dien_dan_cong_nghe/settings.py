@@ -26,15 +26,15 @@ SECRET_KEY = "django-insecure-g@=8h!4@k)_o4jpazq=5mw&v9x*zg!00dm%k^vhd$#6ug3gw%u
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "profile"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Chỉ in email ra console (cho môi trường phát triển)
-EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # Chỉ in email ra console (cho môi trường phát triển)
+EMAIL_HOST = "smtp.mailtrap.io"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'pythonblog1101@gmail.com' 
-EMAIL_HOST_PASSWORD = 'abdxcnmzgwfumcuh' 
+EMAIL_HOST_USER = "pythonblog1101@gmail.com"
+EMAIL_HOST_PASSWORD = "abdxcnmzgwfumcuh"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Application definition
 
@@ -121,7 +121,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+MEDIA_URL =  "/media/"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 

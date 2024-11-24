@@ -59,13 +59,13 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False  # Chưa kích hoạt tài khoản ngay lập tức
+            user = form.save()  
             user.save()
-            send_verification_email(user, request)  # Gửi email xác nhận
+            
+            send_verification_email(user, request)
             messages.success(request, 'Please confirm your email address to complete the registration.')
             return redirect('login')
-    return render(request, 'pages/register.html', {'form': form})
+    return render(request, 'accounts/register.html', {'form': form})
 
 # Đăng nhập
 class CustomLoginView(LoginView):
@@ -79,7 +79,7 @@ class CustomLogoutView(LogoutView):
 @login_required
 def profile_view(request):
     profile = request.user.profile  # Truy cập profile của người dùng hiện tại
-    return render(request, 'profile.html', {'profile': profile})
+    return render(request, 'accounts/profile.html', {'profile': profile})
 
 @login_required
 def edit_profile(request):
@@ -90,5 +90,5 @@ def edit_profile(request):
             return redirect('profile')  # Chuyển hướng người dùng đến trang profile
     else:
         form = ProfileForm(instance=request.user.profile)
-    return render(request, 'edit_profile.html', {'form': form})
+    return render(request, 'accounts/edit_profile.html', {'form': form})
 
