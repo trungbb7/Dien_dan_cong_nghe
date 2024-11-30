@@ -13,7 +13,7 @@ class Tag(models.Model):
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="author_profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email_address = models.EmailField()
@@ -22,7 +22,8 @@ class Author(models.Model):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
-        return self.first_name
+        return self.full_name()
+
 
 class Comment(models.Model):
     post = models.ForeignKey(
@@ -30,7 +31,7 @@ class Comment(models.Model):
     )
     content = models.TextField(default=" ")
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE,null=False)
 
     def __str__(self):
         return f"{self.content}"
@@ -39,21 +40,24 @@ class Comment(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=False)
     tags = models.ManyToManyField(Tag)
-    slug = models.SlugField(unique=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    comments = models.ManyToManyField(Comment, related_name="posts_related")
 
     def total_votes(self):
         upvotes = self.votes_related.filter(is_upvote=True).count()
         downvotes = self.votes_related.filter(is_upvote=False).count()
         return upvotes - downvotes
 
+
 class Vote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="votes_related")
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="votes_related"
+    )
     is_upvote = models.BooleanField()
 
     class Meta:
-        unique_together = ('user', 'post')  # Prevent duplicate votes
+        unique_together = ("user", "post") 

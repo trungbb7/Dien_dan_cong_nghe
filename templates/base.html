@@ -17,7 +17,15 @@
         </div>
         <div class="center_section_nav">
           <img src="..." />
-          <input placeholder="Search for Topics" type="text" />
+          <form method="get" action="{% url 'home' %}">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search posts"
+              value="{{ request.GET.q }}"
+            />
+            <button type="submit">Search</button>
+          </form>
         </div>
         <div class="right_section_nav">
           {% if request.user.is_authenticated %}
@@ -32,11 +40,11 @@
             />
             {% else %}
             <a href="{% url 'profile' %}">
-            <img
-              src="{% static 'images/default_avatar.svg' %}"
-              alt="Default Avatar"
-              class="user-avatar"
-            />
+              <img
+                src="{% static 'images/default_avatar.svg' %}"
+                alt="Default Avatar"
+                class="user-avatar"
+              />
             </a>
             {% endif %}
             <span>{{ request.user.username }}</span>
@@ -76,4 +84,6 @@
       </div>
     </main>
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
